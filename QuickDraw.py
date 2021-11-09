@@ -85,8 +85,10 @@ print("Let's Deal, Shall We?")
 #insert delay
 print("")
 TriesLeft = 3
-def Deal():
+def Shuffle():
   random.shuffle(Shuffled)
+Shuffle()
+def Deal():
   NewList = Shuffled
   global TriesLeft
   TriesLeft = TriesLeft
@@ -104,6 +106,7 @@ def Deal():
   NewList.pop(0)
   NewList.pop(0)
   NewList.pop(0)
+  Shuffle()
   #print(len(Hand))
   print("")
   print(Hand)
@@ -111,23 +114,27 @@ def Deal():
   Like = False
   print(f"Tries Left = {TriesLeft -1}")
   TriesLeft -=1
-  print("Do You Like This Hand?")
+  if TriesLeft >=1:
+   print("Do You Like This Hand?")
   #user input
 print("Look at your Hand")
 Deal()
-print("")
 if TriesLeft >= 0:
-  Deal()
   Like = True
   print("")
-  DiscardPile.append(Hand[0:5])
-  Hand.pop(0)
-  Hand.pop(0)
-  Hand.pop(0)
-  Hand.pop(0)
-  Hand.pop(0)
+  def  Reconstitute():
+    DiscardPile.append(Hand[0:5])
+    Hand.pop(0)
+    Hand.pop(0)
+    Hand.pop(0)
+    Hand.pop(0)
+    Hand.pop(0)
+if TriesLeft >=0:
+  Reconstitute()
+  Deal()
   #print(len(Hand))
   print("Deal Again")
+  Reconstitute()
   Deal()
 elif TriesLeft < 0:
    print("")
